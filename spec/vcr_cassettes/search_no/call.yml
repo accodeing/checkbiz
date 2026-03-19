@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.checkbiz.se/api/v1/searchno?Query=Hansen&Type=person
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Package:
+      - bas
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Thu, 19 Mar 2026 14:13:07 GMT
+      Server:
+      - Kestrel
+      Transfer-Encoding:
+      - chunked
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:f4d0db70-45da-4c07-9a8a-8451d3010326
+    body:
+      encoding: UTF-8
+      string: '{"Type":"Unauthorized","Message":"Invalid request. Contact provider
+        with id 0HNJR4UHGNBR0:00000005 for additional information."}'
+  recorded_at: Thu, 19 Mar 2026 14:13:08 GMT
+recorded_with: VCR 6.4.0
