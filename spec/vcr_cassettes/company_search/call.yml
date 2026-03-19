@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.checkbiz.se/api/v1/companysearch?MaxNrRecords=5&Who=Test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Package:
+      - sokforetag
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '1185'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 19 Mar 2026 14:16:41 GMT
+      Server:
+      - Kestrel
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:f4d0db70-45da-4c07-9a8a-8451d3010326
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJiYXNpY1Jlc3VsdCI6eyJyZWNvcmRzUmV0dXJuZWQiOjUsInRvdGFsUmVjb3Jkc0ZvdW5kIjo1LCJyZWNvcmRzIjpbeyJvcmdOciI6IjU1NjI1MTMyOTAiLCJjb21wYW55TmFtZSI6IlNhYWIgVGVzdCBTeXN0ZW1zIEFrdGllYm9sYWciLCJjb21wYW55Q29kZSI6IkxpbWl0ZWRDb21wYW55IiwiY28iOiJDL08gU0FBQiBBQiwgS09OQ0VSTlNUQUIgSlVSSURJSyIsInN0cmVldCI6IkFOTkEtS0FSSU4gQ1JPTlNURURUIiwiemlwQ29kZSI6IjU4MTg4IiwiY2l0eSI6IkxJTkvDllBJTkciLCJwb3NpdGlvbiI6eyJsYXRpdHVkZSI6bnVsbCwibG9uZ2l0dWRlIjpudWxsfX0seyJvcmdOciI6IjU1NjU3NzQ1OTIiLCJjb21wYW55TmFtZSI6IkVyaWNzc29uIFRlc3QgRW52aXJvbm1lbnRzIEFCIiwiY29tcGFueUNvZGUiOiJMaW1pdGVkQ29tcGFueSIsImNvIjoiIiwic3RyZWV0IjoiIiwiemlwQ29kZSI6IjE2NDgzIiwiY2l0eSI6IlNUT0NLSE9MTSIsInBvc2l0aW9uIjp7ImxhdGl0dWRlIjpudWxsLCJsb25naXR1ZGUiOm51bGx9fSx7Im9yZ05yIjoiNTU2MDM1MzU1OCIsImNvbXBhbnlOYW1lIjoiU2FhYiBCb2ZvcnMgVGVzdCBDZW50ZXIgQWt0aWVib2xhZyIsImNvbXBhbnlDb2RlIjoiTGltaXRlZENvbXBhbnkiLCJjbyI6IiIsInN0cmVldCI6IkJPWCA0MTgiLCJ6aXBDb2RlIjoiNjkxMjciLCJjaXR5IjoiS0FSTFNLT0dBIiwicG9zaXRpb24iOnsibGF0aXR1ZGUiOm51bGwsImxvbmdpdHVkZSI6bnVsbH19LHsib3JnTnIiOiI1NTYwMDY4MjU1IiwiY29tcGFueU5hbWUiOiJUZXN0IGJvbGFnIDggYm9rYXQgYXYgU0tWIEFrdGllYm9sYWciLCJjb21wYW55Q29kZSI6IkxpbWl0ZWRDb21wYW55IiwiY28iOiIiLCJzdHJlZXQiOiIiLCJ6aXBDb2RlIjoiIiwiY2l0eSI6IiIsInBvc2l0aW9uIjp7ImxhdGl0dWRlIjpudWxsLCJsb25naXR1ZGUiOm51bGx9fSx7Im9yZ05yIjoiNTU2MDEwNzA1MyIsImNvbXBhbnlOYW1lIjoiVGVzdGJvbGFnIDExIGJva2F0IGF2IFNLViBmw7ZyIHRlc3Qgb2NoIHZhbGlkZXJpbmcgYXYgbMOlbmd0IGbDtnJldGFnIG5hbW4gQWt0aWVib2xhZyIsImNvbXBhbnlDb2RlIjoiTGltaXRlZENvbXBhbnkiLCJjbyI6IiIsInN0cmVldCI6IiIsInppcENvZGUiOiIiLCJjaXR5IjoiIiwicG9zaXRpb24iOnsibGF0aXR1ZGUiOm51bGwsImxvbmdpdHVkZSI6bnVsbH19XX19
+  recorded_at: Thu, 19 Mar 2026 14:16:42 GMT
+recorded_with: VCR 6.4.0

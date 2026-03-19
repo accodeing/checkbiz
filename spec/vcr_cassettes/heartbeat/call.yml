@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.checkbiz.se/heartbeat
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '15'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 19 Mar 2026 14:41:38 GMT
+      Server:
+      - Kestrel
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:f4d0db70-45da-4c07-9a8a-8451d3010326
+    body:
+      encoding: UTF-8
+      string: '{"status":"Ok"}'
+  recorded_at: Thu, 19 Mar 2026 14:41:38 GMT
+recorded_with: VCR 6.4.0
