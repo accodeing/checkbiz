@@ -1,5 +1,7 @@
 # Checkbiz
 
+[![Gem Version](https://badge.fury.io/rb/checkbiz.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/checkbiz)
+
 Ruby wrapper for the [Checkbiz API](https://api.checkbiz.se), built on [rest-easy](https://github.com/accodeing/rest-easy).
 
 Provides typed access to Swedish person, company, and credit information services.
