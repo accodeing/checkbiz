@@ -10,13 +10,6 @@ require "webmock/rspec"
 require "faraday/net_http"
 Faraday.default_adapter = :net_http
 
-Checkbiz.configure do
-  authentication RestEasy::Auth::PSK.new(
-    api_key: ENV.fetch("API_KEY"),
-    header_prefix: "Basic"
-  )
-end
-
 VCR.configure do |c|
   c.cassette_library_dir = "spec/vcr_cassettes"
   c.hook_into :webmock
