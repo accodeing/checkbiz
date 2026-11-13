@@ -22,7 +22,7 @@ bundle install
 bundle exec rspec
 ```
 
-Tests use VCR cassettes recorded against the staging API. To re-record, delete `spec/vcr_cassettes/` and run the suite with a valid API key configured in `spec/spec_helper.rb`.
+Tests use VCR cassettes recorded against the Checkbiz API. Credentials are read from the environment, loaded from `.env.test.local` (gitignored) or `.env.test`. To re-record a cassette, delete it and run its spec with valid credentials in `.env.test.local`.
 
 ## License
 
