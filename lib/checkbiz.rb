@@ -20,9 +20,18 @@ module Checkbiz
     conversions.json_attributes = :camelCase
   end
 
+  connection do |f|
+    f.options.open_timeout = OPEN_TIMEOUT_IN_SECONDS
+    f.options.timeout = TIMEOUT_IN_SECONDS
+  end
+
   class << self
     def authenticate_with(username:, password:)
       config.authentication = Auth::Bearer.new(Auth::AccessToken.new(username:, password:))
+    end
+
+    def ping
+      get(path: "ping").to_s.strip == "OK"
     end
 
     %i[get post].each do |verb|

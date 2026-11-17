@@ -1,0 +1,367 @@
+---
+openapi: 3.1.0
+info:
+  title: Checkbiz API
+  description: Checkbiz data API version v2
+  contact:
+    email: ''
+  version: v2
+servers:
+- url: https://data.checkbiz.se
+tags:
+- name: Logistics
+  description: Operations for testing requests, and for documentation.
+- name: Company
+  description: Operations for getting company related information.
+- name: Person
+  description: Operations for getting person related information.
+paths:
+  "/v2/ping":
+    get:
+      tags:
+      - Logistics
+      summary: Logistics - Ping
+      description: Test authentication and requests. Responds with the string OK and a new line.
+      operationId: ping
+      responses:
+        '200':
+          description: OK.
+          content:
+            text/plain: {}
+        '403':
+          description: Forbidden - the user lacks the correct permission.
+  "/v2/docs":
+    post:
+      tags:
+      - Logistics
+      summary: Logistics - Docs
+      description: Returns the API documentation in yaml format.
+      operationId: postDocs
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/yaml: {}
+        '403':
+          description: Forbidden - the user lacks the correct permission.
+  "/v2/person/base":
+    post:
+      tags:
+      - Person
+      summary: Person - Base
+      description: Returns basic data for a person.
+      operationId: getBase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/PersonRequest"
+        required: true
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PersonBaseResponse"
+        '400':
+          description: Bad request - see error message.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiErrorMessage"
+        '403':
+          description: Forbidden - the user lacks permission.
+          content:
+            text/plain: {}
+        '404':
+          description: Not found - requested entity does not exist.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiErrorMessage"
+  "/v2/company/base":
+    post:
+      tags:
+      - Company
+      summary: Company - Base
+      description: Returns basic data for a company.
+      operationId: getCompanyData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CompanyRequest"
+        required: true
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CompanyBaseResponse"
+        '400':
+          description: Bad request - see error message.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiErrorMessage"
+        '403':
+          description: Forbidden - the user lacks permission.
+          content:
+            text/plain: {}
+        '404':
+          description: Not found - requested entity does not exist.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiErrorMessage"
+components:
+  schemas:
+    PersonBaseResponse:
+      type: object
+      description: Basic person data.
+      properties:
+        personalNumber:
+          type: string
+          description: The person's personal number (12 digits). Never empty.
+        status:
+          type: string
+          description: The status of the person.
+          enum:
+          - avliden
+          - avregistrerad
+          - avregistrerad-personnummerbyte
+          - normal
+          - okand
+        secretIdentity:
+          type: boolean
+          description: Indicates whether the person's identity is secret or not.
+        birthDate:
+          type: string
+          description: The person's birth date (yyyy-MM-dd).
+        gender:
+          type: string
+          description: The person's gender.
+          enum:
+          - kvinna
+          - man
+        givenName:
+          type: string
+          description: The given name of the person, empty if no such information.
+        firstNames:
+          type: string
+          description: The person's first names, empty if not known.
+        lastNames:
+          type: string
+          description: The person's last names, includes middle names. Empty if not known.
+        registrationDate:
+          type: string
+          description: The date (yyyy-MM-dd) when the person was registered at the current address. Empty if not known.
+        deregistrationDate:
+          type: string
+          description: The date (yyyy-MM-dd) when the person was deregistered or deceased. Empty if the person is not deregistered/deceased or no such date is known. Does not need to be a valid date; can have month or day zero if they are unknown.
+          examples:
+          - 2026-06-01
+          - 2026-06-00
+          - 2026-00-00
+        countyCode:
+          type: string
+          description: The county code (2 digits). Empty if not known.
+        municipalityCode:
+          type: string
+          description: The municipality code (4 digits). Empty if not known.
+        fbfCareOf:
+          type: string
+          description: The care of for the 'folkbokförings-' address, empty if not known.
+        fbfAddressPrefix:
+          type: string
+          description: The prefix for the 'folkbokförings-' address, empty if not known.
+        fbfAddress:
+          type: string
+          description: The street for the 'folkbokförings-' address, empty if not known.
+        fbfZip:
+          type: string
+          description: The zip for the 'folkbokförings-' address (5 digits). Empty if not known.
+        fbfCity:
+          type: string
+          description: The city for the 'folkbokförings-' address, empty if not known.
+        spCareOf:
+          type: string
+          description: The care of for the special postal address, empty if not known.
+        spAddressPrefix:
+          type: string
+          description: The prefix for the special postal address, empty if not known.
+        spAddress:
+          type: string
+          description: The street for the special postal address, empty if not known.
+        spZip:
+          type: string
+          description: The zip for the special postal address (5 digits). Empty if not known.
+        spCity:
+          type: string
+          description: The city for the special postal address, empty if not known.
+        foreignAddress1:
+          type: string
+          description: The first line of the foreign address, empty if not known.
+        foreignAddress2:
+          type: string
+          description: The second line of the foreign address, empty if not known.
+        foreignAddress3:
+          type: string
+          description: The third line of the foreign address, empty if not known.
+        foreignCountry:
+          type: string
+          description: The name of the foreign country the person resides in, empty if not known.
+    ApiErrorMessage:
+      type: object
+      properties:
+        errorMessages:
+          type: array
+          items:
+            type: string
+    PersonRequest:
+      type: object
+      description: Request object for person endpoints.
+      properties:
+        personalNumber:
+          type: string
+          description: The personal number (yyyyMMddiiii, yyMMddiiii, yyyyMMdd-iiii or yyMMdd-iiii) for which to get data.
+      required:
+      - personalNumber
+    CompanyRequest:
+      type: object
+      description: Request object for company endpoints.
+      properties:
+        organizationNumber:
+          type: string
+          description: The 12 or 10 digit organization number, with or without a dash, for which to get data.
+          examples:
+          - '165560909391'
+          - '5560909391'
+          - 16212000-0142
+          - 212000-0142
+      required:
+      - organizationNumber
+    CompanyBaseResponse:
+      type: object
+      description: Basic information for a company.
+      properties:
+        organizationNumber:
+          type: string
+          description: The organization number, 12 digits if the form is 'enskild-naringsidkare' otherwise 10 digits. Never empty.
+        name:
+          type: string
+          description: The name of the company. Empty string if no name for the company.
+        form:
+          type: string
+          description: The company form.
+          enum:
+          - enskild-naringsidkare
+          - enkelt-bolag
+          - partrederi
+          - vardepappersfond
+          - handelsbolag-eller-kommanditbolag
+          - gruvbolag
+          - bankaktiebolag
+          - forsakringsaktiebolag
+          - europabolag
+          - aktiebolag
+          - ekonomisk-forening
+          - bostadsrattsforening
+          - kooperativ-hyresrattsforening
+          - europakooperativ-eller-gruppering
+          - ideell-forening
+          - samfallighet
+          - trossamfund
+          - familjestiftelse
+          - fond-eller-stiftelse
+          - statlig-enhet
+          - kommun
+          - kommunalforbund
+          - landsting
+          - allman-forsakringskassa
+          - offentlig-korporation-eller-anstalt
+          - hypoteksforening
+          - regional-statlig-myndighet
+          - oskiftat-dodsbo
+          - omsesidigt-forsakringsbolag
+          - sparbank
+          - understodsforening
+          - arbetsloshetskassa
+          - utlandsk-juridisk-person
+          - ovrig-svensk-juridisk-person
+          - juridisk-form-ej-utredd
+          - okand
+        status:
+          type: string
+          description: The company status.
+          enum:
+          - normal
+          - ackordsforhandling-inledd
+          - konkurs-inledd
+          - konkurs-avslutad
+          - konkurs-avslutad-med-overskott
+          - likvidation-avslutad
+          - likvidation-beslutad
+          - likvidation-fortsatter
+          - bolaget-avfort-enligt-13-kapitlet-18-paragraf-abl
+          - bolaget-ar-avfort
+          - fusion-inledd
+          - upplost-genom-fusion
+          - fusion-tillaten
+          - fusion-pagar
+          - avford-enligt-17-paragraf-handelsregisterlagen
+          - avregistrerad
+          - avregistrerad-ny-innehavare
+          - avford-fusion-med-utlandskt-foretag
+          - avford-utlandskt-foretags-likvidation-eller-konkurs
+          - avford-verksamheten-har-upphort
+          - avford-filialen-saknar-verkstallande-direktor
+          - avford-enligt-domstolsbeslut
+          - avford-arsredovisning-saknas
+          - bolaget-avfort-pa-egen-begaran
+          - bolaget-avfort-av-bolagsverket
+          - avford
+          - avford-omregistrering-till-bankaktiebolag
+          - beslut-om-ombildning
+          - tillstand-till-ombildning
+          - avregistrerad-ombildning
+          - foretagsrekonstruktion-inledd
+          - resolution-inledd
+          - delning-pagar
+          - upplost-genom-delning
+          - overtagande-av-annat-bolag-pagar
+        statusChangeDate:
+          type: string
+          description: The date (yyyy-MM-dd) when the company status was last changed, empty if no such date is known.
+        registrationDate:
+          type: string
+          description: The registration date (yyyy-MM-dd) of the company, empty if no such date is known.
+        deregistrationDate:
+          type: string
+          description: The deregistration date (yyyy-MM-dd) of the company, empty if active company or no such date is known.
+        seatMunicipalityCode:
+          type: string
+          description: The seat municipality code (4 digits). Empty if not known.
+        careOf:
+          type: string
+          description: The care of string. Empty if no care of address registered.
+        address:
+          type: string
+          description: The street address. Empty if no street address registered.
+        zip:
+          type: string
+          description: The zip (5 digits). Empty if not known.
+        city:
+          type: string
+          description: The city name. Empty if no city registered.
+        countryCode:
+          type: string
+          description: The country code (ISO-3166). Empty if not known, or if the address is in Sweden.
+        phoneNumber:
+          type: string
+          description: The phone number of the company (digits only). Empty if not known.
+        email:
+          type: string
+          description: The email address of the company. Empty if not known.
