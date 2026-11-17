@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.version       = Checkbiz::VERSION.dup
 
-  spec.summary       = "Checkbiz V1 API library, based on rest-easy."
+  spec.summary       = "Checkbiz v2 API library, based on rest-easy."
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/accodeing/checkbiz"
   spec.files         = Dir["CHANGELOG.md", "LICENSE", "README.md", "checkbiz.gemspec", "lib/**/*", "config/*.yml"]
@@ -19,9 +19,10 @@ Gem::Specification.new do |spec|
   spec.executables   = []
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
-  spec.add_runtime_dependency "rest-easy", "~> 1.0.0"
+  spec.add_runtime_dependency "rest-easy", "~> 1.5"
+  spec.add_runtime_dependency "faraday", "~> 2.0"
   spec.add_runtime_dependency "dry-struct"
 
   spec.add_development_dependency "bundler"
