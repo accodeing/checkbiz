@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    checkbiz (1.0.0)
+    checkbiz (2.0.0)
       faraday (~> 2.0)
       rest-easy (~> 1.5)
       zeitwerk (~> 2.6)

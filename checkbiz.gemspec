@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Checkbiz v2 API library, based on rest-easy."
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/accodeing/checkbiz"
-  spec.files         = Dir["CHANGELOG.md", "LICENSE", "README.md", "checkbiz.gemspec", "lib/**/*"]
+  spec.files         = Dir["CHANGELOG.md", "LICENSE.md", "README.md", "checkbiz.gemspec", "lib/**/*"]
   spec.bindir        = "bin"
   spec.executables   = []
   spec.require_paths = ["lib"]

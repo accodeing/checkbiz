@@ -11,8 +11,7 @@ Checkbiz replaces its current API with a new one (v2) at the turn of the year 20
 ## Installation
 
 ```ruby
-gem "checkbiz", path: "../checkbiz"       # local
-gem "checkbiz", git: "https://github.com/accodeing/checkbiz" # git
+gem "checkbiz", "~> 2.0"
 ```
 
 ## Usage
@@ -78,4 +77,4 @@ Tests use VCR cassettes recorded against the Checkbiz API. Credentials are read 
 
 ## License
 
-MIT
+[MIT](LICENSE.md). Copyright (c) 2026 Accodeing to you KB.
