@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Checkbiz v2 API library, based on rest-easy."
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/accodeing/checkbiz"
-  spec.files         = Dir["CHANGELOG.md", "LICENSE", "README.md", "checkbiz.gemspec", "lib/**/*", "config/*.yml"]
+  spec.files         = Dir["CHANGELOG.md", "LICENSE", "README.md", "checkbiz.gemspec", "lib/**/*"]
   spec.bindir        = "bin"
   spec.executables   = []
   spec.require_paths = ["lib"]
@@ -23,11 +23,13 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rest-easy", "~> 1.5"
   spec.add_runtime_dependency "faraday", "~> 2.0"
-  spec.add_runtime_dependency "dry-struct"
+  spec.add_runtime_dependency "zeitwerk", "~> 2.6"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
+
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
